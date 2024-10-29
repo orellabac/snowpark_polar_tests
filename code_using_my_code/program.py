@@ -5,6 +5,7 @@ import polars as pl
 import time, os
 from rich import print
 from snowflake.snowpark._internal.utils import is_in_stored_procedure
+from data_engineering_package.utilities.common import execute_script_code
 
 def read_snowflake_config(connection_name, config_path="~/.snowflake/config.toml"):
     import toml
@@ -25,6 +26,7 @@ def main(session:Session = None):
     total_rows = 150000
     message = ""
     session = Session.builder.getOrCreate()
+    execute_script_code("collect_sample_data.sql",session)
     conn = create_sqlalchemy_engine(session)
     start_time = time.time()
     process1.run_process1(f"select * from  SNOWFLAKE_SAMPLE_DATA.TPCH_SF10.ORDERS limit {total_rows}", "orders1",conn)
