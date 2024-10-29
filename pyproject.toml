@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "data_engineering_package"
+version = "0.0.1"
+authors = [{name = "Mauricio Rojas", email = "mauricio.rojas@snowflake.com"}]
+description = "A tool for manipulating SAS source code"
+# readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+  "polars",
+]
+
+[project.urls]
+Homepage = "https://github/snowflakecorp/SE/sit/SIT.SASTool"
+
+[tool.hatch.build.targets.wheel]
+packages = ["data_engineering_package"]
+
+[project.optional-dependencies]
+development = [
+  "pre-commit>=3.5.0",
+  "pytest==8.3.3"
+]
+
